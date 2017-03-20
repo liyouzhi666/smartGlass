@@ -1,0 +1,96 @@
+C51 COMPILER V9.00   MOTOR1                                                                04/10/2014 20:10:17 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MOTOR1
+OBJECT MODULE PLACED IN motor1.OBJ
+COMPILER INVOKED BY: E:\Keil\Keil\C51\BIN\C51.EXE motor1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1                          #include <reg52.h>
+   2          
+   3           
+   4          
+   5          void delay(unsigned int cnt);
+   6          
+   7          void TrunMotor(unsigned long angle);
+   8          
+   9           
+  10          
+  11          void main()
+  12          
+  13          {
+  14   1      
+  15   1          TrunMotor(360*25); //360度*25，即25圈
+  16   1      
+  17   1           while(1);
+  18   1      
+  19   1      }
+  20          
+  21           
+  22          
+  23          void TrunMotor(unsigned long angle)
+  24          
+  25          {
+  26   1      
+  27   1          unsigned char buf;
+  28   1      
+  29   1          unsigned char step = 0;
+  30   1      
+  31   1          unsigned long beats = 0;
+  32   1      
+  33   1          unsigned char code BeatCode[8] = {  //步进电机节拍对应到IO控制电平的代码
+  34   1      
+  35   1              0xE, 0xC, 0xD, 0x9, 0xB, 0x3, 0x7, 0x6
+  36   1      
+  37   1          };
+  38   1      
+  39   1          
+  40   1      
+  41   1          beats = (angle * 4096) / 360; //计算需要的节拍数，4096拍对应一圈
+  42   1      
+  43   1          while (beats--)
+  44   1      
+  45   1          {
+  46   2      
+  47   2              buf  = P1 & 0xF0;       //用buf暂存P1口的高4位，而低4位清零
+  48   2      
+  49   2              buf |= BeatCode[step];  //buf低4位改为相应的节拍代码值
+  50   2      
+  51   2              P1   = buf;             //修改后完毕后的值送回到P1口
+  52   2      
+  53   2              step++;        //步进节拍递增
+  54   2      
+  55   2              step &= 0x07;  //用“与”方式实现到8归零
+C51 COMPILER V9.00   MOTOR1                                                                04/10/2014 20:10:17 PAGE 2   
+
+  56   2      
+  57   2              delay(200);    //延时2ms，即2ms执行一拍
+  58   2      
+  59   2          }
+  60   1      
+  61   1          P1 |= 0x0F; //关闭电机所有的相
+  62   1      
+  63   1      }
+  64          
+  65          void delay(unsigned int cnt)
+  66          
+  67          {
+  68   1      
+  69   1           while (cnt--);
+  70   1      
+  71   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    125    ----
+   CONSTANT SIZE    =      8    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

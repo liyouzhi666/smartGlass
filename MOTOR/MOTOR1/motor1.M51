@@ -1,0 +1,177 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/10/2014  20:10:17  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\KEIL\KEIL\C51\BIN\BL51.EXE STARTUP.obj, motor1.obj TO motor1 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  motor1.obj (MOTOR1)
+  E:\KEIL\KEIL\C51\LIB\C51S.LIB (?C?LMUL)
+  E:\KEIL\KEIL\C51\LIB\C51S.LIB (?C?ULDIV)
+  E:\KEIL\KEIL\C51\LIB\C51S.LIB (?C?LLDIIDATA)
+
+
+LINK MAP OF MODULE:  motor1 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         _DATA_GROUP_
+            IDATA   0012H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     013DH     UNIT         ?C?LIB_CODE
+            CODE    093DH     0065H     UNIT         ?PR?_TRUNMOTOR?MOTOR1
+            CODE    09A2H     000DH     UNIT         ?PR?MAIN?MOTOR1
+            CODE    09AFH     000CH     UNIT         ?C_C51STARTUP
+            CODE    09BBH     000BH     UNIT         ?PR?_DELAY?MOTOR1
+            CODE    09C6H     0008H     UNIT         ?CO?MOTOR1
+
+
+
+OVERLAY MAP OF MODULE:   motor1 (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MOTOR1
+
+?PR?MAIN?MOTOR1                -----    -----
+  +--> ?PR?_TRUNMOTOR?MOTOR1
+
+?PR?_TRUNMOTOR?MOTOR1          0008H    000AH
+  +--> ?CO?MOTOR1
+  +--> ?PR?_DELAY?MOTOR1
+
+
+
+SYMBOL TABLE OF MODULE:  motor1 (?C_STARTUP)
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/10/2014  20:10:17  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:09AFH         SEGMENT       ?C_C51STARTUP
+  I:0012H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:09B2H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:09AFH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:09AFH         LINE#         133
+  C:09B1H         LINE#         134
+  C:09B2H         LINE#         135
+  C:09B3H         LINE#         136
+  C:09B5H         LINE#         185
+  C:09B8H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MOTOR1
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  C:09BBH         PUBLIC        _delay
+  D:00B8H         PUBLIC        IP
+  C:09A2H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:093DH         PUBLIC        _TrunMotor
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:09A2H         LINE#         11
+  C:09A2H         LINE#         13
+  C:09A2H         LINE#         15
+  C:09ADH         LINE#         17
+  -------         ENDPROC       MAIN
+  -------         PROC          _TRUNMOTOR
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/10/2014  20:10:17  PAGE 3
+
+
+  D:0008H         SYMBOL        angle
+  -------         DO            
+  D:000CH         SYMBOL        buf
+  D:000DH         SYMBOL        step
+  D:000EH         SYMBOL        beats
+  C:09C6H         SYMBOL        BeatCode
+  -------         ENDDO         
+  C:093DH         LINE#         23
+  C:0945H         LINE#         25
+  C:0945H         LINE#         29
+  C:0948H         LINE#         31
+  C:0950H         LINE#         41
+  C:0972H         LINE#         43
+  C:097FH         LINE#         45
+  C:097FH         LINE#         47
+  C:0985H         LINE#         49
+  C:098DH         LINE#         51
+  C:0990H         LINE#         53
+  C:0992H         LINE#         55
+  C:0995H         LINE#         57
+  C:099CH         LINE#         59
+  C:099EH         LINE#         61
+  C:09A1H         LINE#         63
+  -------         ENDPROC       _TRUNMOTOR
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        cnt
+  C:09BBH         LINE#         65
+  C:09BBH         LINE#         67
+  C:09BBH         LINE#         69
+  C:09C5H         LINE#         71
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        MOTOR1
+
+  -------         MODULE        ?C?LMUL
+  C:0800H         PUBLIC        ?C?LMUL
+  -------         ENDMOD        ?C?LMUL
+
+  -------         MODULE        ?C?ULDIV
+  C:088BH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+  -------         MODULE        ?C?LLDIIDATA
+  C:0926H         PUBLIC        ?C?LLDIIDATA
+  C:091DH         PUBLIC        ?C?LLDIIDATA1
+  C:091FH         PUBLIC        ?C?LLDIIDATA8
+  -------         ENDMOD        ?C?LLDIIDATA
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0094H BYTE ( 7%) *
+******************************************************************************
+
+Program Size: data=19.0 xdata=0 code=465
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
